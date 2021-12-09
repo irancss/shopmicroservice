@@ -16,16 +16,13 @@ namespace Catalog.API.Data
         {
             var client = new MongoClient(configuration.GetValue<string>("DataBaseSetting:ConnectionString"));
             var database = client.GetDatabase(configuration.GetValue<string>("DataBaseSettings:DataBaseName"));
-             
-            GetAllProducts = database.GetCollection<Product>(configuration.GetValue<string>("DataBaseSettings:CollectionName"));
-            //CatalogContextSeed.SeedData(GetAllProducts);
 
-            #region SeedData
+            Products = database.GetCollection<Product>(configuration.GetValue<string>("DataBaseSettings:CollectionName"));
+            
+            CatalogContextSeed.SeedData(Products);
 
-
-            #endregion
         }
 
-        public IMongoCollection<Product> GetAllProducts { get; }
+        public IMongoCollection<Product> Products { get; }
     }
 }

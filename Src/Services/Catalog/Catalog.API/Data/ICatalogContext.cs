@@ -9,7 +9,7 @@ namespace Catalog.API.Data
 {
     public interface ICatalogContext
     {
-        IMongoCollection<Product> GetAllProducts { get; }
+        IMongoCollection<Product> Products { get; }
     }
 
 }
