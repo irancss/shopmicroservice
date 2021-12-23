@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Basket.API.Entities;
 using Microsoft.Extensions.Caching.Distributed;
@@ -14,7 +12,7 @@ namespace Basket.API.Repositories
 
         public BasketRepository(IDistributedCache redisCache)
         {
-            _redisCache = redisCache;
+            _redisCache = redisCache ?? throw new ArgumentException(nameof(redisCache));
         }
 
         public async Task<ShoppingCart> GetBasket(string userName)
