@@ -22,8 +22,8 @@ namespace Catalog.API.Controllers
 
         public CatalogController(IProductRepository productRepository, ILogger<CatalogController> logger)
         {
-            _productRepository = productRepository;
-            _logger = logger;
+            _productRepository = productRepository ?? throw new ArgumentException(nameof(Repositories));
+            _logger = logger ?? throw new ArgumentException(nameof(logger));
         }
 
         [HttpGet]
@@ -48,6 +48,7 @@ namespace Catalog.API.Controllers
             }
             return Ok(product);
         }
+
         [HttpGet]
         [Route("[action]/{categoryName}", Name = "GetProductByCategoryName")]
         [ProducesResponseType(StatusCodes.Status200OK)]
