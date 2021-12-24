@@ -30,7 +30,7 @@ namespace Basket.API
 
             services.AddStackExchangeRedisCache(options =>
             {
-                options.Configuration = Configuration.GetValue<string>("CacheSettings:ConnectionStrings");
+                options.Configuration = Configuration.GetValue<string>("CacheSettings:ConnectionString");
             });
 
             #endregion
