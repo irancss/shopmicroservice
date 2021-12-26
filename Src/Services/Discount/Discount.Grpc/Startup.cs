@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Discount.Grpc.Repositories;
 
 namespace Discount.Grpc
 {
@@ -17,6 +18,9 @@ namespace Discount.Grpc
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddGrpc();
+
+            services.AddScoped<IDiscountRepository, DiscountRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -31,7 +35,7 @@ namespace Discount.Grpc
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGrpcService<GreeterService>();
+                //endpoints.MapGrpcService<GreeterService>();
 
                 endpoints.MapGet("/", async context =>
                 {
