@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Discount.Grpc.Repositories;
+using Discount.Grpc.Services;
 
 namespace Discount.Grpc
 {
@@ -20,6 +21,8 @@ namespace Discount.Grpc
             services.AddGrpc();
 
             services.AddScoped<IDiscountRepository, DiscountRepository>();
+
+            services.AddAutoMapper(typeof(Startup));
 
         }
 
@@ -35,7 +38,7 @@ namespace Discount.Grpc
 
             app.UseEndpoints(endpoints =>
             {
-                //endpoints.MapGrpcService<GreeterService>();
+                endpoints.MapGrpcService<DiscountService>();
 
                 endpoints.MapGet("/", async context =>
                 {
